@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas Website</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            background-position: center;
+            background-color: rgba(31, 27, 27, 0.771);
+            background-size: cover;
+        }
+
+        /* Snowflake Animation */
+        #snowflakes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            pointer-events: none; /* Ensures snowflakes don't interfere with interactions */
+            background: rgba(0, 255, 251, 0); /* Black with 20% transparency */
+
+        }
+
+        .snowflake {
+            --size: 1vw;
+            width: var(--size);
+            height: var(--size);
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: -5vh;
+        }
+
+        @keyframes snowfall {
+            0% {
+                transform: translate3d(var(--left-ini), 0, 0);
+            }
+            100% {
+                transform: translate3d(var(--left-end), 110vh, 0);
+            }
+        }
+
+        .snowflake:nth-child(1) { --size: 0.6vw; --left-ini: -10vw; --left-end: 5vw; left: 10vw; animation: snowfall 7s linear infinite; animation-delay: -2s; }
+        .snowflake:nth-child(2) { --size: 1vw; --left-ini: -5vw; --left-end: 10vw; left: 30vw; animation: snowfall 9s linear infinite; animation-delay: -4s; }
+        .snowflake:nth-child(3) { --size: 0.8vw; --left-ini: 5vw; --left-end: -5vw; left: 50vw; animation: snowfall 6s linear infinite; animation-delay: -1s; }
+        .snowflake:nth-child(4) { --size: 1.2vw; --left-ini: 10vw; --left-end: -10vw; left: 70vw; animation: snowfall 8s linear infinite; animation-delay: -3s; }
+        .snowflake:nth-child(5) { --size: 0.5vw; --left-ini: -15vw; --left-end: 5vw; left: 90vw; animation: snowfall 10s linear infinite; animation-delay: -5s; }
+        .snowflake:nth-child(6n) {
+            filter: blur(1px);
+        }
+
+        /* Page and Container Styles */
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .page {
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            transition: transform 1s ease-in-out;
+        }
+
+        .santa-page {
+            background-image: url('f.jpg');
+            background-size: contain;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: black;
+            text-align: center;
+        }
+
+        .santa-page img {
+            width: 200px;
+            height: auto;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .main-page {
+           /* background-image: url('g.jpg');*/
+            background-position: center;
+            background-size: contain;
+            color: rgb(16, 15, 15);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transform: translateY(100vh);
+            text-align: center;
+        }
+
+        .scratch-card {
+            position: relative;
+            width: 300px;
+            height: 150px;
+            color: black;
+            font-size: 18px;
+            font-weight: bold;
+            display:inline-block;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+
+        .scratch-card canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hidden-message {
+            display: none;
+            font-size: 30px;
+            font-weight: bold;
+            color: rgb(0, 255, 132);
+            font-family: sun;
+            margin-top: 20px;
+        }
+
+        .reset-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 40px;
+            font-family: dagel;
+            background-color: white;
+            color: #000000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none;
+        }
+
+        .reset-button:hover {
+            background-color: #e0e0e0;
+        }
+        @font-face {
+            font-family: festival;
+            src: url(Festival-r1g8.ttf);
+        }
+        @font-face {
+            font-family: snowy;
+            src: url(Snowby-DO0GD.ttf);
+        }
+        @font-face {
+            font-family: dagel;
+            src: url(Dagelland-8MB7B.ttf);
+        }
+        @font-face {
+            font-family: sun;
+            src: url(Sunshine-7B4gV.otf);
+        }
+    </style>
+</head>
+<body>
+   
+    <!-- Snowflake Container -->
+    <div id="snowflakes">
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="page santa-page">
+        </div>
+        <div class="page main-page">
+            <h1 style="font-family: festival;font-size:100px;margin-bottom: -10px;color: #D9EAFD;text-shadow:2px 2px black;">Merry Christmas!</h1>
+            <p style="font-family: snowy;font-size: 30px;color: snow;">Scratch The Card 👇</p>
+            <div class="scratch-card" style="border-radius: 10px; background-color: aqua;">
+                <h1 style="font-family: dagel;font: 200px;color: rgb(0, 0, 0);font-size: xx-large;">You're Amazing Today !!!</h1>
+                <p style="font-family: festival;font-size: x-large;color: red;">Click Here</p>
+                <canvas>
+
+                </canvas>
+            </div>
+            <div class="hidden-message">Better Luck Next Year!</div>
+            <button class="reset-button">Reset</button>
+        </div>
+    </div>
+
+    <script>
+        // Scroll effect
+        setTimeout(() => {
+            const container = document.querySelector('.container');
+            const santaPage = container.children[0];
+            const mainPage = container.children[1];
+
+            santaPage.style.transform = 'translateY(-100vh)';
+            mainPage.style.transform = 'translateY(0)';
+        }, 3000);
+        const canvas = document.querySelector('.scratch-card canvas');
+        const ctx = canvas.getContext('2d');
+        const scratchCard = document.querySelector('.scratch-card');
+        const hiddenMessage = document.querySelector('.hidden-message');
+        const resetButton = document.querySelector('.reset-button');
+
+        const messages = [
+            "Santa Tells You : Have A Great Year!",
+            "Santa Tells You : God Bless You!",
+            "Santa Tells You : Happy Holidays!",
+            "Santa Tells You : Season's Greetings!"
+        ];
+
+        function setupScratchCard() {
+            canvas.width = scratchCard.offsetWidth;
+            canvas.height = scratchCard.offsetHeight;
+
+            ctx.fillStyle = '#FF8000';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.globalCompositeOperation = 'source-over';
+
+            clearedPixels = 0; // Reset clearedPixels
+
+            hiddenMessage.style.display = 'none';
+            resetButton.style.display = 'none';
+            scratchCard.style.pointerEvents = 'auto';
+            hiddenMessage.textContent = messages[Math.floor(Math.random() * messages.length)];
+        }
+        function scratch(clientX, clientY) {
+            const rect = canvas.getBoundingClientRect();
+            const x = clientX - rect.left;
+            const y = clientY - rect.top;
+            ctx.globalCompositeOperation = 'destination-out';
+            ctx.beginPath();
+            ctx.arc(x, y, 50, 0, Math.PI * 2); // Increased radius to 50 for larger brush size
+            ctx.fill();
+            clearedPixels += Math.PI * 50 * 50; // Approximation of cleared area (πr²)
+        }
+
+        function checkScratchCompletion() {
+            const totalPixels = canvas.width * canvas.height;
+            if (clearedPixels / totalPixels > 0.5) { // If more than 50% is scratched
+                hiddenMessage.style.display = 'block';
+                resetButton.style.display = 'block';
+                scratchCard.style.pointerEvents = 'none';
+            }
+        }
+
+        let isDrawing = false;
+        let clearedPixels = 0;
+
+        canvas.addEventListener('mousedown', () => {
+            isDrawing = true;
+        });
+
+        canvas.addEventListener('touchstart', (e) => {
+            isDrawing = true;
+            e.preventDefault(); // Prevent scrolling
+        });
+
+        canvas.addEventListener('mouseup', () => {
+            isDrawing = false;
+            checkScratchCompletion();
+        });
+
+        canvas.addEventListener('touchend', () => {
+            isDrawing = false;
+            checkScratchCompletion();
+        });
+
+        canvas.addEventListener('mousemove', (e) => {
+            if (isDrawing) {
+                scratch(e.clientX, e.clientY);
+            }
+        });
+
+        canvas.addEventListener('touchmove', (e) => {
+            if (isDrawing) {
+                const touch = e.touches[0];
+                scratch(touch.clientX, touch.clientY);
+                e.preventDefault(); // Prevent scrolling
+            }
+        });
+
+ 
+
+        resetButton.addEventListener('click', () => {
+            setupScratchCard();
+        });
+
+        setupScratchCard();
+
+        // Scratch card functionality remains unchanged
+    </script>
+</body>
+</html>
